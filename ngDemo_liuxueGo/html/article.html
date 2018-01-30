@@ -1,0 +1,115 @@
+
+
+<div class="main" ng-controller="articleCtrl" style="position: relative">
+        <div class="mask" ng-show="change">
+                <div class="alert">
+                        <div class="alert-head"><span>操作提示</span><span style="font-size: 180%;cursor: pointer" ng-click="cancel()">×</span></div>
+                        <h4 ng-if="listParams.status==1">上线后该图片将在轮播banner中显示</h4>
+                        <h4 ng-if="listParams.status==2">下线后该图片将不展示在轮播banner中</h4>
+                        <h3 ng-show="listParams.status==1">是否执行上上上线操作？</h3>
+                        <h3 ng-show="listParams.status==2">是否执行下下下线操作？</h3>
+                        <div><button ng-click="cancel()">取消</button><button ng-click="confirm()">确定</button></div>
+                </div>
+        </div>
+        <div class="search row" style="margin: 1rem 0 2rem">
+                <form role="form">
+                        <div class="form-group">
+                                <label >类型</label>
+                                <select id="type" class="form-control" ng-model="listParams.type">
+                                        <option value="0">首页banner</option>
+                                        <option value="1">找专业业banner</option>
+                                        <option value="2">找学校banner</option>
+                                        <option value="3">学校大图</option>
+                                </select>
+                        </div>
+                </form>
+                <form role="form">
+                        <div class="form-group">
+                                <label>状态</label>
+                                <select id="status" class="form-control" ng-model="listParams.status">
+                                        <option value="0">全部</option>
+                                        <option value="2">上线</option>
+                                        <option value="1">草稿</option>
+                                </select>
+                        </div>
+                </form>
+
+
+                <!--测试手动监听-->
+
+                <div class="col-md-4">
+                        <nobr>创建时间 <input id="at" type="date"  ng-model="startAt">
+                                -
+                                <input id="end" type="date"   ng-model="endAt"></nobr>
+                        <br>
+                </div>
+                <!--<div style="clear: both"></div>-->
+                <div class="mybtn">
+                        <button type="button" class="btn btn-warning" ng-click="clearOption()">清空</button>
+                        <button type="button" class="btn btn-info"
+                                ui-sref="backstage.article({
+                                size:listParams.size,
+                                page:1,
+                                type:listParams.type,
+                                status:listParams.status,
+                                startAt:startAt,
+                                endAt:endAt
+
+                        })" ui-sref-opts="{reload:true}">搜索</button>
+                </div>
+        </div>
+        <div class="art">
+                <h3>Article列表</h3>
+                <button type="button" class="btn btn-success" ui-sref="backstage.add">新增</button>
+                <table class="table table-striped">
+                        <thead style="font-weight: 600">
+                                <td>序号</td>
+                                <td>名称</td>
+                                <td>类型</td>
+                                <td>创建者</td>
+                                <td>创建时间</td>
+                                <td>修改时间</td>
+                                <td>状态</td>
+                                <td>操作</td>
+                        </thead>
+
+                        <tr ng-repeat="x in list">
+                                <td class="index">{{$index+1}}</td>
+                                <td>{{x.title}}</td>
+                                <td>{{x.type | pageTypeFilter}}</td>
+                                <td>{{x.author}}</td>
+                                <td>{{x.createAt | timeFilter}}</td>
+                                <td>{{x.updateAt | timeFilter}}</td>
+                                <td>{{x.status | statusFilter}}</td>
+                                <td>
+                                        <button type="button" class="btn btn-success"  ng-click="upDown()">{{x.status | upDownFilter}}</button>
+                                        <!--<a type="button" ui-sref="backstage.add({show:1})">编辑</a>-->
+                                        <button type="button" class="btn btn-info"  ng-click="jumpEdit()">编辑</button>
+                                        <button type="button" class="btn btn-danger" ng-click="deleteList()">删除</button>
+                                </td>
+                        </tr>
+                </table>
+                <div id="bottom-btn">
+                        <div class="botom"><span>每页显示</span><input type="text" id="list-num" value="" ng-model="maxSize">条</div>
+                        <button type="button" class="btn btn-default" ng-click="firstPage()">首页</button>
+                        <button type="button" class="btn btn-default" ng-click="back()"> < </button>
+                        <div  ng-repeat="x in pageNumArry">
+                                <button ng-click="gogo()" type="button" class="btn btn-default page-num">{{x}}</button>
+                        </div>
+                        <button type="button" class="btn btn-default" ng-click="forward()"> > </button>
+                        <button type="button" class="btn btn-default" ng-click="lastPage()">末页</button>
+                        <div class="botom"><span>去第</span><input type="text" id="pageS" ng-model="toPage">页</div>
+                        <button type="button" class="btn btn-default" ng-click="sure()">确定</button>
+                </div>
+        </div>
+
+
+
+</div>
+<!--$scope.statusIf  = $scope.list[$scope.indexOfList].status;-->
+
+
+
+
+
+

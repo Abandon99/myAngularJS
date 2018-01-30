@@ -1,0 +1,35 @@
+
+<!---->
+        <div class="ba"  ng-controller="backstageCtrl">
+            <header class="header">
+                <h2>后台管理系统</h2>
+                <div>
+                    <a class="button" ng-click="quit()">退出</a>
+                </div>
+            </header>
+            <div class="my-container">
+                <div class="nav-list">
+                    <a>信息管理</a>
+                    <a ui-sref="backstage.article">Article管理</a>
+                    <a>后台管理</a>
+                </div>
+                <div ui-view=""></div>
+            </div>
+
+            <!--自定义、、、指令---测试、、、、忽略、、、、-->
+            <!--<br><br>-->
+            <!--<test name="tiny"></test>-->
+            <!--{{name}}-->
+            <!--&lt;!&ndash;{{hh}}&ndash;&gt;-->
+
+        </div>
+
+
+
+
+
+
+
+
+
+

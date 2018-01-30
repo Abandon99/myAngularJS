@@ -1,0 +1,132 @@
+
+<!--<script src="js/login.js"></script>-->
+<div class="ad" ng-controller="addCtrl" nv-file-drop="" nv-file-select="" uploader="uploader">
+        <!--<div class="add-head">新增Article</div>-->
+        <h2>{{addParams.id?'编辑':'新增'}}</h2>
+        <form name="addArticle" class="form-horizontal" role="form">
+            <div class="form-group">
+                <label  class="col-sm-2 control-label" >标题名称</label>
+                <div class="col-sm-10">
+                    <input name="title"  class="form-control" ng-model="addParams.title" required>
+                    <span ng-if="addArticle.title.$invalid && addArticle.title.$touched">*此处为必填项</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label   class="col-sm-2 control-label">类型</label>
+                <div class="col-sm-10">
+                    <select name="type" id="type" class="form-control " ng-model="addParams.type"  ng-options="x.id as x.type for x in typeList" required>
+                    </select>
+                    <span ng-if="addArticle.type.$touched && addArticle.type.$invalid">这是必选项</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-10">
+                    <select name="industry" class="form-control " ng-show="addParams.type ==3" ng-model="addParams.industry" ng-options="y.id as y.industry for y in industryList" required>
+                        <option value="">请选择</option>
+                    </select>
+                    <span ng-if="addArticle.industry.$touched && addArticle.industry.$invalid">这是必选项</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label  class="col-sm-2 control-label">跳转链接</label>
+                <div class="col-sm-10">
+                    <input name="url" id="url" type="url" class="form-control"  ng-model="addParams.url" required>
+                    <span class="star"  ng-if="addArticle.url.$touched&&addArticle.url.$invalid">这是必选项</span>
+                    <span ng-show="addArticle.url.$error.required && addArticle.url.$touched">*链接必填</span>
+                    <span ng-show="addArticle.url.$error.url">*链接不符合格式</span>
+                </div>
+            </div>
+
+                <!-- //文件上传插件-->
+
+            <div class="form-group">
+                <label  class="col-sm-2 control-label">配图</label>
+                <!--****************************************-->
+                <!--*******Copy插件*************************-->
+                <!--****************************************-->
+                <div class="col-sm-2"></div>
+                <div class="col-sm-10" style="margin-bottom: 40px">
+                    <span ng-if="!(addParams.img||imgUrl)">*图片必需</span>
+                    <input name="file" type="file" ng-model="file"  nv-file-select="" uploader="uploader" required><br>
+
+                    <div class="col-md-9" style="margin-bottom: 40px">
+
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th width="30%">名字</th>
+                                <th ng-show="uploader.isHTML5">大小</th>
+                                <th width="30%" ng-show="uploader.isHTML5">进度</th>
+                                <th>状态</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            <tr ng-repeat="item in uploader.queue">
+                                <td>
+                                    <strong>{{ item.file.name }}</strong>
+
+                                    <!--<div ng-show="uploader.isHTML5"  ng-thumb="{ file: item._file, height: 100 }" name="img" required="required">-->
+                                        <!--&lt;!&ndash;canvas&ndash;&gt;-->
+                                    <!--</div>-->
+
+                                </td>
+                                <!--展示图片的缩略图！~~~-->
+                                <img ng-src="{{addParams.img}}" alt="" width="30%">
+
+                                <td ng-show="uploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
+                                <td ng-show="uploader.isHTML5">
+                                    <div class="progress" style="margin-bottom: 0;">
+                                        <div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
+                                    </div>
+                                </td>
+                                <td class="text-center">
+                                    <span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
+                                    <span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
+                                    <span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
+                                </td>
+                                <td nowrap>
+                                    <button type="button" class="btn btn-success btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
+                                        <span class="glyphicon glyphicon-upload"></span> 上传
+                                    </button>
+                                    <button type="button" class="btn btn-warning btn-xs" ng-click="item.cancel()" ng-disabled="!item.isUploading">
+                                        <span class="glyphicon glyphicon-ban-circle"></span> 取消
+                                    </button>
+                                    <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
+                                        <span class="glyphicon glyphicon-trash"></span> 删除
+                                    </button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+                <!--  //富文本编辑器-->
+            <div class="form-group">
+                <label  class="col-sm-2 control-label">说明</label>
+                <div class="col-sm-10">
+                    <div style="position: relative">
+                        <div class="ddd" >
+                            <div style="height: 300px" id="editor-trigger" ng-model="addParams.content" ng-model="params.content" contenteditable="true" ></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2"></div>
+            <button type="button" class="btn btn-success" ng-disabled="addArticle.title.$invalid || addArticle.type.$invalid || addArticle.url.$invalid || !(imgUrl||addParams.img)" ng-click="onLine(2)">立即上线</button>
+            <button type="button" class="btn btn-success" ng-disabled="addArticle.title.$invalid || addArticle.type.$invalid || addArticle.url.$invalid || !(imgUrl||addParams.img)"  ng-click="onLine(1)">存为草稿</button>
+            <button type="button" class="btn btn-warning" ui-sref="backstage.article">取消</button>
+        </form>
+</div>
+<!--addArticle.title.$invalid || addArticle.type.$invalid || addArticle.type.url ||-->
+
+
+
+
+
+
+
+

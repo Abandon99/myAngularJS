@@ -1,0 +1,211 @@
+@charset "utf-8";
+
+body,header,button {
+        margin: 0;
+        padding: 0;
+}
+
+.ba a {
+        text-align: center;
+        color: #ffffff;
+        text-decoration: none;
+}
+.ba a:hover {
+        width: 100%;
+        text-decoration: none;
+        cursor: pointer;
+        color: #d9d4d7;
+}
+.ba a:active {
+        text-decoration: none;
+}
+.ba a:focus {
+        text-decoration: none;
+}
+
+.ba header {
+        padding: 1.5rem  14rem 1.5rem 1.5rem;
+        background-color: #fe640a;
+        display: flex;
+        justify-content: space-between;
+        border-bottom: solid #b6b6b6 1px;
+        font-size: 2.5rem;
+        /*color: #FFFFFF;*/
+}
+
+.ba .my-container {
+        /*display: flex;*/
+}
+
+.ba h2 {
+        color: #970f00;
+}
+
+.ba .nav-list {
+        float: left;
+        height: 72rem;
+        width: 15%;
+        margin: 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding-top: 2rem;
+        border: 1px solid #d9dad7;
+        background-color: #fe640a;
+}
+
+.ba .nav-list a {
+        display: block;
+         padding: 1.5rem 0;
+         color: #ffffff;
+         font-size: 1.5rem;
+         letter-spacing: 1px;
+ }
+.ba .nav-list a:hover {
+        background-color: #ffa62c;
+}
+
+/*==========以下是main部分====>>article.html<<=================*/
+
+.main {
+        /*flex-grow: 1;*/
+        float: left;
+        width: 80%;
+}
+
+.search {
+        position: relative;
+        margin: 1rem 0;
+        padding: 1rem 1rem;
+        border: 1px solid #fae8e2;
+}
+
+.main .search .row {
+        margin-left:0;
+
+}
+
+
+.search .col-md-2 {
+        float: left;
+}
+
+.search div {
+        /*margin: 0.8rem 0;*/
+}
+
+.search input {
+        margin: 0.5rem;
+        width: 14rem;
+}
+
+.search .mybtn {
+        float: right;
+}
+
+.art {
+        /*float: left;*/
+        padding:1rem;
+        border: solid 1px #f6edd8;
+        margin-bottom: 5rem;
+}
+
+.art h3 {
+        display: inline;
+}
+
+.art button {
+        float: right;
+        margin-bottom: 0.5rem;
+}
+.art .table {
+        border-top: 1px solid #f6edd8;
+}
+
+.art tr a {
+        color: #112bb7;
+}
+.art tr a:hover {
+        color: #1436e0;
+}
+
+.page-num {
+        
+        clear: both;
+        width: 3rem;
+}
+
+#bottom-btn {
+        display: flex;
+        justify-content: center;
+}
+
+#bottom-btn input {
+        width: 3rem;
+        margin: 0 5px;
+}
+
+#bottom-btn button {
+        width: initial;
+}
+
+.mask {
+        position: absolute;
+        top:0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.5);
+        z-index: 999;
+}
+
+.alert {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid #ff8b40;
+        width: 45rem;
+        margin: 15rem auto 0 auto;
+        background: rgb(250, 250, 250);
+        
+}
+.alert .alert-head {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0 0 1rem;
+}
+
+.botom {
+    margin: 0 0.5rem;
+    display: flex;
+    align-items: center;
+}
+
+
+
+.art .table>tbody>tr>td {
+    padding: 8px;
+    line-height: 1.42857143;
+     vertical-align: middle;
+    border-top: 1px solid #ddd;
+}
+
+
+/*=========以下是editArticle.html=============*/
+
+
+.ad {
+        /*background-color: red;*/
+        width: 80%;
+        float:left;
+        margin: 1rem 0;
+}
+
+
+
+
+
